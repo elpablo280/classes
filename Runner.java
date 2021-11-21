@@ -22,7 +22,7 @@ public class Runner {
                 }
             }
         }
-        System.out.println("Business trip with maximum cost : ");
+        System.out.print("Business trip with maximum cost : ");
         maxCost.show();
 
         // update the transportation expenses for the last object of the array
