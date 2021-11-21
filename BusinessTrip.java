@@ -2,7 +2,7 @@ package by.gsu.epamlab;
 
 public class BusinessTrip {
 
-    private final static int RATE = 10000;
+    private final static int RATE = 305;
     private String account;
     private int transport;
     private int days;
@@ -45,12 +45,7 @@ public class BusinessTrip {
     }
 
     private String toFinValue(int value){
-        if (value % 100 == 0)
-            return value/100 + ".00";
-        else if (value % 100 < 10)
-            return value/100 + ".0" + value % 100;
-        else
-            return value/100 + "." + value % 100;
+        return String.format("%d.%02d", value/100, value % 100);
     }
 
     public void show(){
@@ -63,6 +58,6 @@ public class BusinessTrip {
 
     @Override
     public String toString() {
-            return account + "; " + toFinValue(transport) + "; " + days + "; " + toFinValue(getTotal());
+        return String.format("%s;%s;%d;%s", account, toFinValue(transport), days, toFinValue(getTotal()));
     }
 }
