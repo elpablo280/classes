@@ -44,6 +44,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return name + "; " + material.getName() + "; " + material.getDensity() + "; " + volume + "; " + getMass();
+        return String.format("%s;%s;%.1f;%.2f;%.1f", name, material.getName(), material.getDensity(), volume, getMass());
     }
 }
