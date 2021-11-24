@@ -2,44 +2,34 @@ package by.epam.lab;
 
 public class Purchase implements Comparable<Purchase> {
 
-    private final String PRODUCT_NAME = "milk";
-    private final int PRICE = 100;
+    public static final String PRODUCT_NAME = "milk";
+    public static final int PRICE = 100;
     private int number;
-    private int percent;
-    public enum WeekDay {
-        SUNDAY,
-        MONDAY,
-        TUESDAY,
-        WEDNESDAY,
-        THURSDAY,
-        FRIDAY,
-        SATURDAY
-    }
-    public WeekDay weekDay;
+    private double percent;
+    private int weekDay;
+    public WeekDay dayOfWeek;
 
     public Purchase() {
     }
 
-    public Purchase(int number, int percent, WeekDay weekDay) {
+    public Purchase(int number, double percent, WeekDay dayOfWeek) {
         this.number = number;
         this.percent = percent;
-        this.weekDay = weekDay;
+        this.dayOfWeek = dayOfWeek;
     }
 
-    public String getPRODUCT_NAME() {
-        return PRODUCT_NAME;
-    }
-
-    public int getPRICE() {
-        return PRICE;
+    public Purchase(int number, double percent, int weekDay) {
+        this.number = number;
+        this.percent = percent;
+        this.dayOfWeek = WeekDay.values()[weekDay];
     }
 
     public WeekDay getWeekDay() {
-        return weekDay;
+        return dayOfWeek;
     }
 
     public void setWeekDay(WeekDay weekDay) {
-        this.weekDay = weekDay;
+        this.dayOfWeek = weekDay;
     }
 
     public int getNumber() {
@@ -50,7 +40,7 @@ public class Purchase implements Comparable<Purchase> {
         this.number = number;
     }
 
-    public int getPercent() {
+    public double getPercent() {
         return percent;
     }
 
@@ -59,19 +49,16 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public int getCost() {
-        return Math.round(PRICE*number*(100 - percent)/100);
+        return (int) Math.round(PRICE*number*(100 - percent)/100);
     }
 
     @Override
     public String toString() {
-        return String.format("%d;%d;%s;%d.%02d", number, percent, weekDay, getCost()/100, getCost()%100);
+        return String.format("%d;%.1f;%s;%d.%02d", number, percent, dayOfWeek, getCost()/100, getCost()%100);
     }
 
     @Override
     public int compareTo(Purchase purchase) {
-        if (number < purchase.number){
-            return -1;
-        }
-        return 0;
+        return Integer.compare(number, purchase.number);
     }
 }
